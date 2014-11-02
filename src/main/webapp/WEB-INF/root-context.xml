@@ -28,7 +28,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <context:property-placeholder location="/WEB-INF/database.properties"/>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <bean class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close" id="dataSource">
@@ -43,9 +43,8 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <bean
-            class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-            id="entityManagerFactory">
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+          id="entityManagerFactory">
         <!-- 关键是这里要指定entity类所在的包-->
         <property name="packagesToScan" value="com.lemon.study.repository.entity"/>
         <property name="dataSource" ref="dataSource"/>
@@ -65,10 +64,5 @@
     </bean>
 
     <jpa:repositories base-package="com.lemon.study.repository"/>
-    <!--entity-manager-factory-ref="entityManagerFactory"-->
-    <!--transaction-manager-ref="transactionManager"/>-->
-
-    <!--<jpa:repositories base-package="footmark.springdata.jpa.dao"-->
-
 
 </beans>
